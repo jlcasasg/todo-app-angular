@@ -1,0 +1,7 @@
+<div *ngIf="todo" [@inOutAnimation]>
+    <div class="todo__wrapper">
+        <button class="check" *ngIf="!todo.isCompleted" (click)="onCompleted()"></button>
+        <div class="title" [ngClass]="todo.isCompleted ? 'isCompleted' : null">{{todo.title}}</div>
+        <button class="remove-btn" (click)="onRemove()">x</button>
+    </div>
+</div>
