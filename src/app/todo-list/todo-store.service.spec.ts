@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TestScheduler } from 'rxjs/testing';
 import { TodoStoreService } from './todo-store.service';
-import { Todo } from './todo';
 
 describe('TodoStoreService', () => {
   let service: TodoStoreService;
@@ -15,14 +13,14 @@ describe('TodoStoreService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return none uncomplete TODO', (done) => {
+  it('should return none uncomplete TODO', (done: DoneFn) => {
     service.uncompleteTodos$.subscribe((list) => {
       expect(list.length).toEqual(0);
       done();
     });
   });
 
-  it('should return one uncomplete TODO', (done) => {
+  it('should return one uncomplete TODO', (done: DoneFn) => {
     service.addTodo('first_todo');
 
     service.uncompleteTodos$.subscribe((list) => {
@@ -31,7 +29,7 @@ describe('TodoStoreService', () => {
     });
   });
 
-  it('should return none complete TODO', (done) => {
+  it('should return none complete TODO', (done: DoneFn) => {
     service.completedTodos$.subscribe((list) => {
       expect(list.length).toEqual(0);
       done();
@@ -39,7 +37,7 @@ describe('TodoStoreService', () => {
   });
 
 
-  it('should return one complete TODO', (done) => {
+  it('should return one complete TODO', (done: DoneFn) => {
     service.addTodo('first_todo');
     let firstTodo;
     service.todos$.subscribe((todos) => {
@@ -54,7 +52,7 @@ describe('TodoStoreService', () => {
   });
 
 
-  it('should remove the first TODO', (done) => {
+  it('should remove the first TODO', (done: DoneFn) => {
     service.addTodo('first_todo');
     service.addTodo('second_todo');
     service.addTodo('third_todo');
@@ -70,7 +68,7 @@ describe('TodoStoreService', () => {
     done();
   });
 
-  it('should handle remove a TODO that does not exists', (done) => {
+  it('should handle remove a TODO that does not exists', (done: DoneFn) => {
     service.addTodo('first_todo');
     service.addTodo('second_todo');
     service.addTodo('third_todo');
